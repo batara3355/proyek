@@ -135,6 +135,11 @@ CREATE TABLE `profil` (
   `nama_website` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+CREATE table 'saya' (
+  'nama_saya' varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4; 
+
+
 --
 -- Dumping data untuk tabel `profil`
 --

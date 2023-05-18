@@ -3,7 +3,7 @@
     $id_pengguna=$_POST["id_pengguna"];
     // mengambil data barang dengan kode paling besar
     include '../../config/database.php';
-    $query = mysqli_query($kon, "SELECT * FROM pengguna where id_pengguna=$id_pengguna");
+    $query = mysqli_query($con, "SELECT * FROM pengguna where id_pengguna=$id_pengguna");
     $data = mysqli_fetch_array($query); 
 
     $kode_pengguna=$data['kode_pengguna'];
