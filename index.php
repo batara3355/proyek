@@ -82,6 +82,7 @@
     <h1><?php echo $judul;?></h1>
 
 </div>
+<?php include "galeri.php" ?>
 
 <div class="container">
 <?php 
