@@ -1,0 +1,137 @@
+body {
+  margin: 0;
+  box-sizing: border-box;
+}
+/* CSS for main element */
+.intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 400px;
+  background: linear-gradient(to bottom, rgba(81, 59, 168, 0.5) 0%, rgba(213, 209, 209, 0.5) 100%), url("https://tse2.mm.bing.net/th?id=OIP.-7AxUt7MOJDbUd4493DOHQHaEo&pid=Api&P=0");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-bottom: 10px;
+}
+
+.intro h1 {
+  font-family: sans-serif;
+  font-size: 60px;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.intro p {
+  font-size: 20px;
+  color: #d1d1d1;
+  text-transform: uppercase;
+  margin: 20px 0;
+}
+
+.intro button {
+  background-color: #5edaf0;
+  color: #000;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.4)
+}
+
+.achievements {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 40px 80px;
+}
+
+.achievements .work {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 40px;
+}
+
+.achievements .work i {
+  width: fit-content;
+  font-size: 50px;
+  color: #333333;
+  border-radius: 50%;
+  border: 2px solid #333333;
+  padding: 12px;
+}
+
+.achievements .work .work-heading {
+  font-size: 20px;
+  color: #333333;
+  text-transform: uppercase;
+  margin: 10px 0;
+}
+
+.achievements .work .work-text {
+  font-size: 15px;
+  color: #585858;
+  margin: 10px 0;
+}
+
+/*button untuk NEXT */
+
+    .btn {
+        display: inline-block;
+        padding: 8px 12px;
+        font-size: 14px;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none;
+        background-color: #12253a;
+        color: #361919;
+        border: none;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+        background-color: #acb3bc;
+    }
+
+
+
+
+/* gambar*/
+
+/* .row.col-sm-8.thumbnail*/
+.container { 
+  position: relative;
+}
+
+/* Bottom right text */
+.row.col-sm-8.thumbnail.text-block {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background-color: black;
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+
+
+/*style map */ 
+
+#map {
+  height: 100%;
+  margin: 20px;
+}
+
+/* Optional: Makes the sample page fill the window. */
+
+

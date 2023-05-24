@@ -1,3 +1,6 @@
+
+                <?php include "map.php" ?>
+           
 <?php
     function input($data) {
         $data = trim($data);
@@ -20,83 +23,16 @@
                     <li class="breadcrumb-item active" aria-current="page"><?php echo $data["judul_artikel"];?></li>
                 </ol>
             </nav>
-            <img src="admin/artikel/gambar/<?php echo $data['gambar'];?>" width="100%" alt="Cinque Terre">
-            <div class="artikel">
-    <h2><?php echo $nama_artikel; ?></h2>
-    <p><?php echo $desa; ?></p>
-    <p><?php echo $kecamatan; ?></p>
-    <p><?php echo $kabupaten; ?></p>
-    <p><?php echo $propinsi; ?></p>
-</div>
-
+            <img src="admin/artikel/gambar/<?php echo $data['gambar'];?>" width="100%" height="500px" alt="Cinque Terre">
+            <br><br>
             <div class="caption">
                 <?php
                 echo strip_tags(html_entity_decode($data["isi_artikel"],ENT_QUOTES,"ISO-8859-1"));
                  ?>
                 <hr>
             </div>
-<!-- Form Pencarian -->
-<form method="GET" action="index.php">
-    <div class="form-group">
-        <input type="text" name="search" class="form-control" placeholder="Cari artikel...">
-    </div>
-    <button type="submit" class="btn btn-primary">Cari</button>
-</form>
-
-<div class="row">
-    <?php
-    include 'config/database.php';
-
-    // Logika Pencarian
-    $search = isset($_GET['search']) ? $_GET['search'] : '';
-    if ($search != '') {
-        $sql = "SELECT * FROM artikel WHERE status=1 AND judul_artikel LIKE '%$search%' ORDER BY id_artikel DESC";
-    }elseif(isset($_GET['kategori'])){
-        $sql="select * from artikel where status=1 and id_kategori=".$_GET['kategori']." order by id_artikel desc";
-    }
-    else {
-        $sql="select * from artikel where status=1 order by id_artikel desc";
-        // $sql = "SELECT * FROM artikel WHERE status=1 ORDER BY id_artikel DESC";
-    }
-
-    $hasil = mysqli_query($kon, $sql);
-    $jumlah = mysqli_num_rows($hasil);
-    if ($jumlah > 0) {
-        while ($data = mysqli_fetch_array($hasil)):
-    ?>
-            <div class="col-sm-3">
-                <div class="thumbnail">
-                    <a href="index.php?halaman=artikel&id=<?php echo $data['id_artikel']; ?>">
-                        <img src="admin/artikel/gambar/<?php echo $data['gambar']; ?>" width="100%" alt="Cinque Terre">
-                    </a>
-                    <div class="caption">
-                        <h3><?php echo $data['judul_artikel']; ?></h3>
-                        <p>
-                            <?php
-                            $ambil = $data["isi_artikel"];
-                            $panjang = strip_tags(html_entity_decode($ambil, ENT_QUOTES, "ISO-8859-1"));
-                            echo substr($panjang, 0, 200);
-                            ?>
-                        </p>
-                        <p>
-                            <a href="index.php?halaman=artikel&id=<?php echo $data['id_artikel']; ?>" class="btn btn-light btn-block" role="button">Selengkapnya</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-    <?php
-        endwhile;
-    } else {
-        echo "<div class='alert alert-warning'> Tidak ada artikel pada kategori ini.</div>";
-    }
-    ?>
-</div>
-
-
-
-
-
-
+            
+                     
             <?php
                   if (isset($_GET['komentar'])) {
                     //Mengecek nilai variabel add yang telah di enskripsi dengan method md5()
@@ -159,34 +95,62 @@
         </div>
     </div>
     <div class="col-sm-4">
-        <div class="row">
-            <?php
-                include 'config/database.php';
-                $sql="select * from artikel where status=1 order by id_artikel desc";
-                $hasil=mysqli_query($kon,$sql);
-                while ($data = mysqli_fetch_array($hasil)):
-            ?>
-            <div class="col-sm-12">
-                <div class="caption">
-                    <h5><a class="text-dark" href="index.php?halaman=artikel&id=<?php echo $data['id_artikel'];?>"><?php echo $data['judul_artikel'];?></a></h5>
-                    <div class="row">
-                        <div class="col-xl-3">
-                            <img src="admin/artikel/gambar/<?php echo $data['gambar'];?>" width="100%" alt="Cinque Terre">
-                        </div>
-                        <div class="col-sm-9">
-                            <?php
-                                $ambil=$data["isi_artikel"];
-                                $panjang = strip_tags(html_entity_decode($ambil,ENT_QUOTES,"ISO-8859-1"));
-                            
+    <form method="GET" action="index.php">
+    <div class="form-group">
+        <input type="text" name="search" class="form-control" placeholder="Cari artikel...">
+    </div>
+    <button type="submit" class="btn btn-primary">Cari</button>
+</form>
+    <div class="row">
+        <?php
+        include 'config/database.php';
+
+        // Check if search query is provided
+        $search = isset($_GET['search']) ? $_GET['search'] : '';
+
+        // Modify the SQL query to include the search condition
+        if ($search != '') {
+            $sql = "SELECT * FROM artikel WHERE status=1 AND judul_artikel LIKE '%$search%' ORDER BY id_artikel DESC";
+        } elseif (isset($_GET['kategori'])) {
+            $sql = "SELECT * FROM artikel WHERE status=1 AND id_kategori=" . $_GET['kategori'] . " ORDER BY id_artikel DESC";
+        } else {
+            $sql = "SELECT * FROM artikel WHERE status=1 ORDER BY id_artikel DESC";
+        }
+        $hasil = mysqli_query($kon, $sql);
+
+        $resultCount = 0; // Counter variable
+
+        while ($data = mysqli_fetch_array($hasil)):
+            if ($resultCount < 5) { // Change '5' to the desired number of results
+                $resultCount++;
+        ?>
+                <div class="col-sm-12">
+                    <div class="caption">
+                        <h5><a class="text-dark" href="index.php?halaman=artikel&id=<?php echo $data['id_artikel']; ?>"><?php echo $data['judul_artikel']; ?></a></h5>
+                        <div class="row">
+                            <div class="col-xl-3">
+                                <img src="admin/artikel/gambar/<?php echo $data['gambar']; ?>" width="100%" alt="Cinque Terre">
+                            </div>
+                            <div class="col-sm-9">
+                                <?php
+                                $ambil = $data["isi_artikel"];
+                                $panjang = strip_tags(html_entity_decode($ambil, ENT_QUOTES, "ISO-8859-1"));
+
                                 echo substr($panjang, 0, 80);
-                            ?>
+                                ?>
+                            </div>
                         </div>
+                        <br>
                     </div>
-                    <br>
                 </div>
-            </div>
-            <?php endwhile; ?>
-        </div>
+        <?php
+            } else {
+                break; // Stop the loop if the desired number of results is reached
+            }
+        endwhile;
+        ?>
+    </div>
+
         <div class="row">
             <div class="col-sm-12">
                 <img src="gambar/iklan.png" width="100%"alt="Cinque Terre">
