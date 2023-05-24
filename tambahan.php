@@ -21,14 +21,6 @@
                 </ol>
             </nav>
             <img src="admin/artikel/gambar/<?php echo $data['gambar'];?>" width="100%" alt="Cinque Terre">
-            <div class="artikel">
-    <h2><?php echo $nama_artikel; ?></h2>
-    <p><?php echo $desa; ?></p>
-    <p><?php echo $kecamatan; ?></p>
-    <p><?php echo $kabupaten; ?></p>
-    <p><?php echo $propinsi; ?></p>
-</div>
-
             <div class="caption">
                 <?php
                 echo strip_tags(html_entity_decode($data["isi_artikel"],ENT_QUOTES,"ISO-8859-1"));
@@ -173,7 +165,7 @@
                         <div class="col-xl-3">
                             <img src="admin/artikel/gambar/<?php echo $data['gambar'];?>" width="100%" alt="Cinque Terre">
                         </div>
-                        <div class="col-sm-9">
+                        
                             <?php
                                 $ambil=$data["isi_artikel"];
                                 $panjang = strip_tags(html_entity_decode($ambil,ENT_QUOTES,"ISO-8859-1"));
